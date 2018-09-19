@@ -1,0 +1,610 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TO_DataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AA_Table_List">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Table_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Remark" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Account_info">
+          <Key>
+            <PropertyRef Name="User_Account" />
+          </Key>
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Account" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="User_No" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="User_Name_PY" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_Name_CN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_Name_EN" Type="nvarchar" MaxLength="50" />
+          <Property Name="User_Dept" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_Role" Type="nvarchar" MaxLength="20" />
+          <Property Name="User_Sub_Dept" Type="nvarchar" MaxLength="10" />
+          <Property Name="User_Team" Type="nvarchar" MaxLength="10" />
+          <Property Name="User_Sub_Team" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Lib_Fix_Options">
+          <Key>
+            <PropertyRef Name="Option_Code" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Option_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Fix_Option_Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Products" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Fix_Tender_ME_Hours" Type="decimal" Precision="4" Scale="1" />
+          <Property Name="Fix_Tender_EE_Hours" Type="decimal" Precision="4" Scale="1" />
+          <Property Name="Fix_Order_ME_Hours" Type="decimal" Precision="4" Scale="1" />
+          <Property Name="Fix_Order_EE_Hours" Type="decimal" Precision="4" Scale="1" />
+          <Property Name="Fix_Option_Type" Type="nvarchar" MaxLength="10" />
+          <Property Name="Fix_Option_Remark" Type="nvarchar(max)" />
+          <Property Name="Valuable_Or_Not" Type="bit" Nullable="false" />
+          <Property Name="Related_FG" Type="nchar" MaxLength="80" />
+          <Property Name="Fix_Option_Input_Mask" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Lib_Project_States">
+          <Key>
+            <PropertyRef Name="States_Number" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="States_Number" Type="smallint" Nullable="false" />
+          <Property Name="States_Description" Type="varchar" MaxLength="100" />
+          <Property Name="States_Milestone" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Lib_User_Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role_Code" Type="tinyint" />
+          <Property Name="Role_Name" Type="nvarchar" MaxLength="40" />
+          <Property Name="Role_Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="Valuable_Or_Not" Type="bit" />
+        </EntityType>
+        <EntityType Name="Option_Base">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Option_Code" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Project_Attached_Files">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tender_Version" Type="smallint" Nullable="false" />
+          <Property Name="Upload_Person" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Upload_Time" Type="datetime" Nullable="false" />
+          <Property Name="Upload_File_type" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Project_No" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="File_Title" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="File_Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="MD5_Code" Type="nvarchar" MaxLength="100" />
+          <Property Name="File_Category" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Project_Base_Info">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Project_No" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tender_Version" Type="smallint" Nullable="false" />
+          <Property Name="Project_Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="KONE_FL" Type="nvarchar" MaxLength="50" />
+          <Property Name="KONE_FL_Person" Type="nvarchar" MaxLength="50" />
+          <Property Name="CS_Person" Type="nvarchar" MaxLength="50" />
+          <Property Name="OE_response_ME" Type="nvarchar" MaxLength="50" />
+          <Property Name="OE_response_EE" Type="nvarchar" MaxLength="50" />
+          <Property Name="Special_Requirement" Type="nvarchar(max)" />
+          <Property Name="Receive_Date" Type="datetime" />
+          <Property Name="Receive_Week" Type="tinyint" />
+          <Property Name="Delivery_Date" Type="datetime" />
+          <Property Name="Reply_Date" Type="datetime" />
+          <Property Name="NRP_Date" Type="datetime" />
+          <Property Name="Current_Owner" Type="nvarchar" MaxLength="50" />
+          <Property Name="Change_History" Type="nvarchar(max)" />
+          <Property Name="Order_Mark" Type="bit" />
+          <Property Name="Order_Version" Type="smallint" />
+          <Property Name="Project_State" Type="smallint" />
+          <Property Name="Modified_Data" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Project_Option_Info">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Project_No" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Item_No" Type="smallint" />
+          <Property Name="Tender_Version" Type="smallint" Nullable="false" />
+          <Property Name="Option_Description" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Hours_M" Type="decimal" Precision="5" Scale="1" />
+          <Property Name="ME_Solution_Check" Type="bit" />
+          <Property Name="Hours_E" Type="decimal" Precision="5" Scale="1" />
+          <Property Name="EE_Solution_Check" Type="bit" />
+          <Property Name="OE_response_ME" Type="nvarchar" MaxLength="50" />
+          <Property Name="OE_response_EE" Type="nvarchar" MaxLength="50" />
+          <Property Name="OE_ME_Comments" Type="nvarchar" MaxLength="1000" />
+          <Property Name="OE_EE_Comments" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CTQ_ME" Type="bit" />
+          <Property Name="CTQ_EE" Type="bit" />
+          <Property Name="Options_Drawing_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Options_Drawing_Address" Type="nvarchar" MaxLength="20" />
+          <Property Name="Options_Solution_ME_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Options_Solution_ME_Address" Type="nvarchar" MaxLength="20" />
+          <Property Name="Options_Solution_EE_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Options_Solution_EE_Address" Type="nvarchar" MaxLength="20" />
+          <Property Name="Order_Version" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Project_Product_Spec">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Project_No" Type="nchar" MaxLength="10" />
+          <Property Name="Tender_Version" Type="smallint" />
+          <Property Name="Product_Name" Type="nvarchar" MaxLength="20" />
+          <Property Name="Units_Specification" Type="nvarchar" MaxLength="50" />
+          <Property Name="Units_Quantity" Type="smallint" />
+          <Property Name="Units_Equipment_No" Type="nchar" MaxLength="10" />
+          <Property Name="OF_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="OF_File_Name" Type="nvarchar" MaxLength="20" />
+          <Property Name="Layout_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Layout_File_Name" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Project_States">
+          <Key>
+            <PropertyRef Name="States_Number" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="States_Number" Type="smallint" Nullable="false" />
+          <Property Name="States_Description" Type="varchar" MaxLength="100" />
+          <Property Name="States_Milestone" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Project_Units_Info">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Project_No" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Order_Version" Type="smallint" Nullable="false" />
+          <Property Name="Units_SAP_No" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="Units_Equipment_No" Type="nvarchar" MaxLength="20" />
+          <Property Name="OF_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="OF_File_Address" Type="nvarchar" MaxLength="20" />
+          <Property Name="Layout_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Layout_Address" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityContainer Name="TO_DataBaseModelStoreContainer">
+          <EntitySet Name="AA_Table_List" EntityType="Self.AA_Table_List" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Account_info" EntityType="Self.Account_info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lib_Fix_Options" EntityType="Self.Lib_Fix_Options" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lib_Project_States" EntityType="Self.Lib_Project_States" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lib_User_Role" EntityType="Self.Lib_User_Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Option_Base" EntityType="Self.Option_Base" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project_Attached_Files" EntityType="Self.Project_Attached_Files" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project_Base_Info" EntityType="Self.Project_Base_Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project_Option_Info" EntityType="Self.Project_Option_Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project_Product_Spec" EntityType="Self.Project_Product_Spec" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project_States" EntityType="Self.Project_States" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project_Units_Info" EntityType="Self.Project_Units_Info" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TO_DataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AA_Table_List">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Table_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Account_info">
+          <Key>
+            <PropertyRef Name="User_Account" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Account" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="User_No" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="User_Name_PY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="User_Name_CN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="User_Name_EN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="User_Dept" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="User_Role" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="User_Sub_Dept" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="User_Team" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="User_Sub_Team" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Lib_Fix_Options">
+          <Key>
+            <PropertyRef Name="Option_Code" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Option_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fix_Option_Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Products" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fix_Tender_ME_Hours" Type="Decimal" Precision="4" Scale="1" />
+          <Property Name="Fix_Tender_EE_Hours" Type="Decimal" Precision="4" Scale="1" />
+          <Property Name="Fix_Order_ME_Hours" Type="Decimal" Precision="4" Scale="1" />
+          <Property Name="Fix_Order_EE_Hours" Type="Decimal" Precision="4" Scale="1" />
+          <Property Name="Fix_Option_Type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Fix_Option_Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Valuable_Or_Not" Type="Boolean" Nullable="false" />
+          <Property Name="Related_FG" Type="String" MaxLength="80" FixedLength="true" Unicode="true" />
+          <Property Name="Fix_Option_Input_Mask" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Lib_Project_States">
+          <Key>
+            <PropertyRef Name="States_Number" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="States_Number" Type="Int16" Nullable="false" />
+          <Property Name="States_Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="States_Milestone" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Lib_User_Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role_Code" Type="Byte" />
+          <Property Name="Role_Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Role_Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Valuable_Or_Not" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Option_Base">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Option_Code" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Project_Attached_Files">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tender_Version" Type="Int16" Nullable="false" />
+          <Property Name="Upload_Person" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Upload_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Upload_File_type" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project_No" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="File_Title" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="File_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MD5_Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="File_Category" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Project_Base_Info">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Project_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tender_Version" Type="Int16" Nullable="false" />
+          <Property Name="Project_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="KONE_FL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KONE_FL_Person" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CS_Person" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OE_response_ME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OE_response_EE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Special_Requirement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Receive_Date" Type="DateTime" Precision="3" />
+          <Property Name="Receive_Week" Type="Byte" />
+          <Property Name="Delivery_Date" Type="DateTime" Precision="3" />
+          <Property Name="Reply_Date" Type="DateTime" Precision="3" />
+          <Property Name="NRP_Date" Type="DateTime" Precision="3" />
+          <Property Name="Current_Owner" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Change_History" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Order_Mark" Type="Boolean" />
+          <Property Name="Order_Version" Type="Int16" />
+          <Property Name="Project_State" Type="Int16" />
+          <Property Name="Modified_Data" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Project_Option_Info">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Project_No" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Item_No" Type="Int16" />
+          <Property Name="Tender_Version" Type="Int16" Nullable="false" />
+          <Property Name="Option_Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Hours_M" Type="Decimal" Precision="5" Scale="1" />
+          <Property Name="ME_Solution_Check" Type="Boolean" />
+          <Property Name="Hours_E" Type="Decimal" Precision="5" Scale="1" />
+          <Property Name="EE_Solution_Check" Type="Boolean" />
+          <Property Name="OE_response_ME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OE_response_EE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OE_ME_Comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="OE_EE_Comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CTQ_ME" Type="Boolean" />
+          <Property Name="CTQ_EE" Type="Boolean" />
+          <Property Name="Options_Drawing_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Options_Drawing_Address" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Options_Solution_ME_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Options_Solution_ME_Address" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Options_Solution_EE_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Options_Solution_EE_Address" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Order_Version" Type="Int16" />
+        </EntityType>
+        <EntityType Name="Project_Product_Spec">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Project_No" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Tender_Version" Type="Int16" />
+          <Property Name="Product_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Units_Specification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Units_Quantity" Type="Int16" />
+          <Property Name="Units_Equipment_No" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="OF_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OF_File_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Layout_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Layout_File_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Project_States">
+          <Key>
+            <PropertyRef Name="States_Number" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="States_Number" Type="Int16" Nullable="false" />
+          <Property Name="States_Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="States_Milestone" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Project_Units_Info">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Project_No" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Order_Version" Type="Int16" Nullable="false" />
+          <Property Name="Units_SAP_No" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Units_Equipment_No" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="OF_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OF_File_Address" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Layout_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Layout_Address" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="TO_DB_CONN" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AA_Table_List" EntityType="Self.AA_Table_List" />
+          <EntitySet Name="Account_info" EntityType="Self.Account_info" />
+          <EntitySet Name="Lib_Fix_Options" EntityType="Self.Lib_Fix_Options" />
+          <EntitySet Name="Lib_Project_States" EntityType="Self.Lib_Project_States" />
+          <EntitySet Name="Lib_User_Role" EntityType="Self.Lib_User_Role" />
+          <EntitySet Name="Option_Base" EntityType="Self.Option_Base" />
+          <EntitySet Name="Project_Attached_Files" EntityType="Self.Project_Attached_Files" />
+          <EntitySet Name="Project_Base_Info" EntityType="Self.Project_Base_Info" />
+          <EntitySet Name="Project_Option_Info" EntityType="Self.Project_Option_Info" />
+          <EntitySet Name="Project_Product_Spec" EntityType="Self.Project_Product_Spec" />
+          <EntitySet Name="Project_States" EntityType="Self.Project_States" />
+          <EntitySet Name="Project_Units_Info" EntityType="Self.Project_Units_Info" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TO_DataBaseModelStoreContainer" CdmEntityContainer="TO_DB_CONN">
+          <EntitySetMapping Name="AA_Table_List">
+            <EntityTypeMapping TypeName="TO_DataBaseModel.AA_Table_List">
+              <MappingFragment StoreEntitySet="AA_Table_List">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Table_Name" ColumnName="Table_Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Account_info">
+            <EntityTypeMapping TypeName="TO_DataBaseModel.Account_info">
+              <MappingFragment StoreEntitySet="Account_info">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="User_Account" ColumnName="User_Account" />
+                <ScalarProperty Name="User_No" ColumnName="User_No" />
+                <ScalarProperty Name="User_Name_PY" ColumnName="User_Name_PY" />
+                <ScalarProperty Name="User_Name_CN" ColumnName="User_Name_CN" />
+                <ScalarProperty Name="User_Name_EN" ColumnName="User_Name_EN" />
+                <ScalarProperty Name="User_Dept" ColumnName="User_Dept" />
+                <ScalarProperty Name="User_Role" ColumnName="User_Role" />
+                <ScalarProperty Name="User_Sub_Dept" ColumnName="User_Sub_Dept" />
+                <ScalarProperty Name="User_Team" ColumnName="User_Team" />
+                <ScalarProperty Name="User_Sub_Team" ColumnName="User_Sub_Team" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lib_Fix_Options">
+            <EntityTypeMapping TypeName="TO_DataBaseModel.Lib_Fix_Options">
+              <MappingFragment StoreEntitySet="Lib_Fix_Options">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Option_Code" ColumnName="Option_Code" />
+                <ScalarProperty Name="Fix_Option_Description" ColumnName="Fix_Option_Description" />
+                <ScalarProperty Name="Products" ColumnName="Products" />
+                <ScalarProperty Name="Fix_Tender_ME_Hours" ColumnName="Fix_Tender_ME_Hours" />
+                <ScalarProperty Name="Fix_Tender_EE_Hours" ColumnName="Fix_Tender_EE_Hours" />
+                <ScalarProperty Name="Fix_Order_ME_Hours" ColumnName="Fix_Order_ME_Hours" />
+                <ScalarProperty Name="Fix_Order_EE_Hours" ColumnName="Fix_Order_EE_Hours" />
+                <ScalarProperty Name="Fix_Option_Type" ColumnName="Fix_Option_Type" />
+                <ScalarProperty Name="Fix_Option_Remark" ColumnName="Fix_Option_Remark" />
+                <ScalarProperty Name="Valuable_Or_Not" ColumnName="Valuable_Or_Not" />
+                <ScalarProperty Name="Related_FG" ColumnName="Related_FG" />
+                <ScalarProperty Name="Fix_Option_Input_Mask" ColumnName="Fix_Option_Input_Mask" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lib_Project_States">
+            <EntityTypeMapping TypeName="TO_DataBaseModel.Lib_Project_States">
+              <MappingFragment StoreEntitySet="Lib_Project_States">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="States_Number" ColumnName="States_Number" />
+                <ScalarProperty Name="States_Description" ColumnName="States_Description" />
+                <ScalarProperty Name="States_Milestone" ColumnName="States_Milestone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lib_User_Role">
+            <EntityTypeMapping TypeName="TO_DataBaseModel.Lib_User_Role">
+              <MappingFragment StoreEntitySet="Lib_User_Role">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Role_Code" ColumnName="Role_Code" />
+                <ScalarProperty Name="Role_Name" ColumnName="Role_Name" />
+                <ScalarProperty Name="Role_Description" ColumnName="Role_Description" />
+                <ScalarProperty Name="Valuable_Or_Not" ColumnName="Valuable_Or_Not" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Option_Base">
+            <EntityTypeMapping TypeName="TO_DataBaseModel.Option_Base">
+              <MappingFragment StoreEntitySet="Option_Base">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Option_Code" ColumnName="Option_Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Project_Attached_Files">
+            <EntityTypeMapping TypeName="TO_DataBaseModel.Project_Attached_Files">
+              <MappingFragment StoreEntitySet="Project_Attached_Files">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Tender_Version" ColumnName="Tender_Version" />
+                <ScalarProperty Name="Upload_Person" ColumnName="Upload_Person" />
+                <ScalarProperty Name="Upload_Time" ColumnName="Upload_Time" />
+                <ScalarProperty Name="Upload_File_type" ColumnName="Upload_File_type" />
+                <ScalarProperty Name="Project_No" ColumnName="Project_No" />
+                <ScalarProperty Name="File_Title" ColumnName="File_Title" />
+                <ScalarProperty Name="File_Name" ColumnName="File_Name" />
+                <ScalarProperty Name="MD5_Code" ColumnName="MD5_Code" />
+                <ScalarProperty Name="File_Category" ColumnName="File_Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Project_Base_Info">
+            <EntityTypeMapping TypeName="TO_DataBaseModel.Project_Base_Info">
+              <MappingFragment StoreEntitySet="Project_Base_Info">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Project_No" ColumnName="Project_No" />
+                <ScalarProperty Name="Tender_Version" ColumnName="Tender_Version" />
+                <ScalarProperty Name="Project_Name" ColumnName="Project_Name" />
+                <ScalarProperty Name="KONE_FL" ColumnName="KONE_FL" />
+                <ScalarProperty Name="KONE_FL_Person" ColumnName="KONE_FL_Person" />
+                <ScalarProperty Name="CS_Person" ColumnName="CS_Person" />
+                <ScalarProperty Name="OE_response_ME" ColumnName="OE_response_ME" />
+                <ScalarProperty Name="OE_response_EE" ColumnName="OE_response_EE" />
+                <ScalarProperty Name="Special_Requirement" ColumnName="Special_Requirement" />
+                <ScalarProperty Name="Receive_Date" ColumnName="Receive_Date" />
+                <ScalarProperty Name="Receive_Week" ColumnName="Receive_Week" />
+                <ScalarProperty Name="Delivery_Date" ColumnName="Delivery_Date" />
+                <ScalarProperty Name="Reply_Date" ColumnName="Reply_Date" />
+                <ScalarProperty Name="NRP_Date" ColumnName="NRP_Date" />
+                <ScalarProperty Name="Current_Owner" ColumnName="Current_Owner" />
+                <ScalarProperty Name="Change_History" ColumnName="Change_History" />
+                <ScalarProperty Name="Order_Mark" ColumnName="Order_Mark" />
+                <ScalarProperty Name="Order_Version" ColumnName="Order_Version" />
+                <ScalarProperty Name="Project_State" ColumnName="Project_State" />
+                <ScalarProperty Name="Modified_Data" ColumnName="Modified_Data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Project_Option_Info">
+            <EntityTypeMapping TypeName="TO_DataBaseModel.Project_Option_Info">
+              <MappingFragment StoreEntitySet="Project_Option_Info">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Project_No" ColumnName="Project_No" />
+                <ScalarProperty Name="Item_No" ColumnName="Item_No" />
+                <ScalarProperty Name="Tender_Version" ColumnName="Tender_Version" />
+                <ScalarProperty Name="Option_Description" ColumnName="Option_Description" />
+                <ScalarProperty Name="Hours_M" ColumnName="Hours_M" />
+                <ScalarProperty Name="ME_Solution_Check" ColumnName="ME_Solution_Check" />
+                <ScalarProperty Name="Hours_E" ColumnName="Hours_E" />
+                <ScalarProperty Name="EE_Solution_Check" ColumnName="EE_Solution_Check" />
+                <ScalarProperty Name="OE_response_ME" ColumnName="OE_response_ME" />
+                <ScalarProperty Name="OE_response_EE" ColumnName="OE_response_EE" />
+                <ScalarProperty Name="OE_ME_Comments" ColumnName="OE_ME_Comments" />
+                <ScalarProperty Name="OE_EE_Comments" ColumnName="OE_EE_Comments" />
+                <ScalarProperty Name="CTQ_ME" ColumnName="CTQ_ME" />
+                <ScalarProperty Name="CTQ_EE" ColumnName="CTQ_EE" />
+                <ScalarProperty Name="Options_Drawing_Name" ColumnName="Options_Drawing_Name" />
+                <ScalarProperty Name="Options_Drawing_Address" ColumnName="Options_Drawing_Address" />
+                <ScalarProperty Name="Options_Solution_ME_Name" ColumnName="Options_Solution_ME_Name" />
+                <ScalarProperty Name="Options_Solution_ME_Address" ColumnName="Options_Solution_ME_Address" />
+                <ScalarProperty Name="Options_Solution_EE_Name" ColumnName="Options_Solution_EE_Name" />
+                <ScalarProperty Name="Options_Solution_EE_Address" ColumnName="Options_Solution_EE_Address" />
+                <ScalarProperty Name="Order_Version" ColumnName="Order_Version" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Project_Product_Spec">
+            <EntityTypeMapping TypeName="TO_DataBaseModel.Project_Product_Spec">
+              <MappingFragment StoreEntitySet="Project_Product_Spec">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Project_No" ColumnName="Project_No" />
+                <ScalarProperty Name="Tender_Version" ColumnName="Tender_Version" />
+                <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+                <ScalarProperty Name="Units_Specification" ColumnName="Units_Specification" />
+                <ScalarProperty Name="Units_Quantity" ColumnName="Units_Quantity" />
+                <ScalarProperty Name="Units_Equipment_No" ColumnName="Units_Equipment_No" />
+                <ScalarProperty Name="OF_Name" ColumnName="OF_Name" />
+                <ScalarProperty Name="OF_File_Name" ColumnName="OF_File_Name" />
+                <ScalarProperty Name="Layout_Name" ColumnName="Layout_Name" />
+                <ScalarProperty Name="Layout_File_Name" ColumnName="Layout_File_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Project_States">
+            <EntityTypeMapping TypeName="TO_DataBaseModel.Project_States">
+              <MappingFragment StoreEntitySet="Project_States">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="States_Number" ColumnName="States_Number" />
+                <ScalarProperty Name="States_Description" ColumnName="States_Description" />
+                <ScalarProperty Name="States_Milestone" ColumnName="States_Milestone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Project_Units_Info">
+            <EntityTypeMapping TypeName="TO_DataBaseModel.Project_Units_Info">
+              <MappingFragment StoreEntitySet="Project_Units_Info">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Project_No" ColumnName="Project_No" />
+                <ScalarProperty Name="Order_Version" ColumnName="Order_Version" />
+                <ScalarProperty Name="Units_SAP_No" ColumnName="Units_SAP_No" />
+                <ScalarProperty Name="Units_Equipment_No" ColumnName="Units_Equipment_No" />
+                <ScalarProperty Name="OF_Name" ColumnName="OF_Name" />
+                <ScalarProperty Name="OF_File_Address" ColumnName="OF_File_Address" />
+                <ScalarProperty Name="Layout_Name" ColumnName="Layout_Name" />
+                <ScalarProperty Name="Layout_Address" ColumnName="Layout_Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
